@@ -89,4 +89,26 @@ app.MapDelete("/pizza/{id}", async (PizzaDb db, int id) =>
     return Results.Ok();
 });
 
+
+// Seed verisi: uygulama başlatıldığında örnek pizzalar eklenir(opsiyonel ekledim)
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<PizzaDb>();
+
+    if (!db.Pizzas.Any())
+    {
+        db.Pizzas.AddRange(
+            new Pizza { Name = "Margherita", Description = "Domates, Mozarella" },
+            new Pizza { Name = "Pepperoni", Description = "Sucuk, Mozarella" },
+            new Pizza { Name = "Vegetarian", Description = "Sebzeler ve Mozarella" }
+        );
+        db.SaveChanges();
+    }
+}
+
+
+
+
+
+
 app.Run();

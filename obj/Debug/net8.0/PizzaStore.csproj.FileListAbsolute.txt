@@ -254,3 +254,20 @@
 /Users/kubrabayram/Desktop/PizzaStore 2/obj/Debug/net8.0/PizzaStore.pdb
 /Users/kubrabayram/Desktop/PizzaStore 2/obj/Debug/net8.0/PizzaStore.genruntimeconfig.cache
 /Users/kubrabayram/Desktop/PizzaStore 2/obj/Debug/net8.0/ref/PizzaStore.dll
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/out/web.config
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/web.config
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/web.config
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/appsettings.Development.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/appsettings.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/appsettings.Development.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/appsettings.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/out/appsettings.Development.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/out/appsettings.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/out/PizzaStore.deps.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/out/PizzaStore.runtimeconfig.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/PizzaStore.deps.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/out/PizzaStore.runtimeconfig.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/PizzaStore.deps.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/out/PizzaStore.runtimeconfig.json
+/Users/kubrabayram/Desktop/PizzaStore/bin/Debug/net8.0/Pizzas.db
+/Users/kubrabayram/Desktop/PizzaStore/obj/Debug/net8.0/PizzaStore.sourcelink.json
