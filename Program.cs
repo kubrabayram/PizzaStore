@@ -2,16 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using PizzaStore.Models;
 
-var builder = WebApplication.CreateBuilder(args); // 👉 önce builder'ı oluştur
+var builder = WebApplication.CreateBuilder(args);
 
-// 👉 sonra connection string'i builder üzerinden al
+// Connection string
 var connectionString = builder.Configuration.GetConnectionString("Pizzas")
                       ?? "Data Source=Pizzas.db";
 
-// EF Core için SQLite veritabanı servisini ekle
+// EF Core için SQLite servisi
 builder.Services.AddSqlite<PizzaDb>(connectionString);
 
-// Swagger servisini ekle
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
@@ -34,27 +34,22 @@ builder.Services.AddCors(options =>
     });
 });
 
-
-
 var app = builder.Build();
+
+// CORS
 app.UseCors();
 
+// 🔹 Swagger her ortamda açık
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "PizzaStore API V1");
-         c.RoutePrefix = string.Empty; // root URL'den Swagger açılır
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "PizzaStore API V1");
+    c.RoutePrefix = string.Empty; // root URL'den açılır
+});
 
-app.MapGet("/", () => "Hello World!");
+// ✅ API endpoint’leri
+app.MapGet("/pizzas", async (PizzaDb db) => await db.Pizzas.ToListAsync());
 
-// GET
-app.MapGet("/pizzas", async (PizzaDb db) =>
-    await db.Pizzas.ToListAsync());
-
-// POST
 app.MapPost("/pizza", async (PizzaDb db, Pizza pizza) =>
 {
     await db.Pizzas.AddAsync(pizza);
@@ -62,13 +57,11 @@ app.MapPost("/pizza", async (PizzaDb db, Pizza pizza) =>
     return Results.Created($"/pizza/{pizza.Id}", pizza);
 });
 
-// GET by ID
 app.MapGet("/pizza/{id}", async (PizzaDb db, int id) =>
     await db.Pizzas.FindAsync(id) is Pizza pizza
         ? Results.Ok(pizza)
         : Results.NotFound());
 
-// PUT
 app.MapPut("/pizza/{id}", async (PizzaDb db, Pizza updatepizza, int id) =>
 {
     var pizza = await db.Pizzas.FindAsync(id);
@@ -79,7 +72,6 @@ app.MapPut("/pizza/{id}", async (PizzaDb db, Pizza updatepizza, int id) =>
     return Results.NoContent();
 });
 
-// DELETE
 app.MapDelete("/pizza/{id}", async (PizzaDb db, int id) =>
 {
     var pizza = await db.Pizzas.FindAsync(id);
@@ -89,12 +81,10 @@ app.MapDelete("/pizza/{id}", async (PizzaDb db, int id) =>
     return Results.Ok();
 });
 
-
-// Seed verisi: uygulama başlatıldığında örnek pizzalar eklenir(opsiyonel ekledim)
+// Seed verisi
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<PizzaDb>();
-
     if (!db.Pizzas.Any())
     {
         db.Pizzas.AddRange(
@@ -105,10 +95,6 @@ using (var scope = app.Services.CreateScope())
         db.SaveChanges();
     }
 }
-
-
-
-
 
 
 app.Run();
