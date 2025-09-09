@@ -45,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "PizzaStore API V1");
+         c.RoutePrefix = string.Empty; // root URL'den Swagger açılır
     });
 }
 
